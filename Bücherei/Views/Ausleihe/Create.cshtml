@@ -1,0 +1,96 @@
+﻿@model Bücherei.Models.Ausleihe
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>Ausleihe</h4>
+<hr />
+
+<div class="row" style="width:auto">
+    <div class="col-sm-6">
+        <form asp-action="Create" name="createForm">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <!--Ausklappbare Eingabe für Schüler-->
+            <div class="card">
+                <div class="card-header" id="headingOne" style="display: flex; flex-wrap: wrap;">
+                    <div class="form-group">
+                        <label asp-for="Ausweisnummer" class="row control-label input-group-lg"></label>
+                        <input asp-for="Ausweisnummer" id="ausweisnummer" class="form-control" onblur="checkSchuelerIn(this.value)" />
+                    </div>
+                    <!--Hier muss unbedingt ein span sein damit es nicht "jumps" macht beim collapsen-->
+                    <span class="btn card-link" style="display:inline-flex;align-items:center;" data-toggle="collapse" data-target="#collapseSchuelerIn" aria-expanded="true" aria-controls="collapseSchuelerIn">
+                        +
+                    </span>
+                    <label id="kurzInfoSchuelerIn" class="text-primary" style="flex-basis:100%" />
+                </div>
+
+                <div id="collapseSchuelerIn" class="collapse hide" aria-labelledby="headingOne">
+                    <div class="card-body">
+                        <!--Eingaben für properties von SchülerInnen-->
+                        <div class="form-group">
+                            <label asp-for="SchuelerIn.Vorname" class="row control-label input-group-lg" id="Label_Autor"></label>
+                            <input asp-for="SchuelerIn.Vorname" class="form-control" />
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="SchuelerIn.Nachname" class="row control-label input-group-lg" id="Label_Sachgebiet"></label>
+                            <input asp-for="SchuelerIn.Nachname" class="form-control" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Ausleihdatum" class="control-label"></label>
+                <input asp-for="Ausleihdatum" class="form-control" />
+                <span asp-validation-for="Ausleihdatum" class="text-danger"></span>
+            </div>
+
+            
+
+            <table id="tblAusleihe" class="table" cellpadding="0" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th style="width:150px">Buchnummer</th>
+                        <th style="width:150px">Autor</th>
+                        <th style="width:150px">Titel</th>
+                        <th style="width:150px">Ort</th>
+                        <th style="width:150px">Erscheinungsjahr</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <td><input type="text" id="txtBuchnummer"/></td>
+                        <td><input type="text" id="txtAutor"/></td>
+                        <td><input type="text" id="txtSachgebiet"/></td>
+                        <td><input type="text" id="txtOrt"/></td>
+                        <td><input type="number" id="txtErscheinungsjahr"/></td>
+                        <td><input style="width:150px" class="btn btn-info" type="button" id="btnAdd" onclick="addRow()" value="Add" /></td>
+                    </tr>
+                </tfoot>
+            </table>
+
+
+            <div class="col-sm-6">
+                <button id="btnSave" class="btn btn-dark">Save</button>
+            </div>
+        </form>
+       
+    </div>
+    
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
