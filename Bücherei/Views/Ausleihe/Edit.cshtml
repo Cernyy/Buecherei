@@ -1,0 +1,49 @@
+﻿@model Bücherei.Models.Ausleihe
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+
+<h4>Ausleihe</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Id" />
+            <div class="form-group">
+                <label asp-for="Buchnummer" class="control-label"></label>
+                <select asp-for="Buchnummer" class="form-control" asp-items="ViewBag.Buchnummer"></select>
+                <span asp-validation-for="Buchnummer" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Ausweisnummer" class="control-label"></label>
+                <select asp-for="Ausweisnummer" class="form-control" asp-items="ViewBag.Ausweisnummer"></select>
+                <span asp-validation-for="Ausweisnummer" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Ausleihdatum" class="control-label"></label>
+                <input asp-for="Ausleihdatum" class="form-control" />
+                <span asp-validation-for="Ausleihdatum" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Retourdatum" class="control-label"></label>
+                <input asp-for="Retourdatum" class="form-control" />
+                <span asp-validation-for="Retourdatum" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
