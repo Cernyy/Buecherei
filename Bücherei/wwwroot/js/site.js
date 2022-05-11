@@ -5,7 +5,7 @@
 
 // Write your JavaScript code.
 
-$("#btnSave").on("click", function () {
+$("#btnSave").on("click", async function () {
     //schüler stuff
     var schuelerIn_ = {};
     schuelerIn_.Ausweisnummer = $("#ausweisnummer").val();
@@ -17,7 +17,7 @@ $("#btnSave").on("click", function () {
         url: "/Ausleihe/CreateFehlendeSchuelerInnen",
         dataType: 'json',
         contentType: "application/json;charset=utf-8",
-        data: JSON.stringify(schuelerIn_) ,
+        data: JSON.stringify(schuelerIn_),
         success: function () {
             console.log("schueler")
         },
@@ -28,20 +28,23 @@ $("#btnSave").on("click", function () {
     });
 
     //bücher stuff
-    $("#tblAusleihe TBODY TR").each(function () {
+    await $("#tblAusleihe TBODY TR").each(function () {
         var row = $(this);
-        var ausleihe_ = {};
-        ausleihe_.Buchnummer = row.find("TD").eq(0).html();
-        ausleihe_.Ausweisnummer = $("#ausweisnummer").val(); 
-        ausleihe_.Ausleihdatum = $("#ausleihdatum").val(); 
+        var buch_ = {};
+        buch_.Buchnummer = row.find("TD").eq(0).html();
+        buch_.Autor = row.find("TD").eq(1).html();
+        buch_.Sachgebiet = row.find("TD").eq(2).html();
+        buch_.Titel = row.find("TD").eq(3).html();
+        buch_.Ort = row.find("TD").eq(4).html();
+        buch_.Erscheinungsjahr = row.find("TD").eq(5).html();
         $.ajax({
             type: 'POST',
-            url: "/Ausleihe/CreateAusleihe",
+            url: "/Ausleihe/CreateFehlendeBuecher",
             dataType: 'json',
             contentType: "application/json;charset=utf-8",
-            data: JSON.stringify(ausleihe_),
+            data: JSON.stringify(buch_),
             success: function () {
-                console.log("ausleihe")
+                console.log("buch")
             },
             error: function (ex) {
                 console.log(ex);
@@ -74,11 +77,13 @@ $("#btnSave").on("click", function () {
 
 
 
+
 function addRow() {
     var bereitsInTable = false;
     var bereitsAusgeborgt = false;
     //Zellen Referenz "holen"
     var txtBuchnummer = $("#txtBuchnummer");
+    String(txtBuchnummer).padStart(6, '0');
     var txtAutor = $("#txtAutor");
     var txtSachgebiet = $("#txtSachgebiet");
     var txtTitel = $("#txtTitel");

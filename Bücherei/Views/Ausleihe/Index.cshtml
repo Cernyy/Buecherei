@@ -43,10 +43,10 @@
                 @Html.DisplayFor(modelItem => item.Retourdatum)
             </td>
             <td>
-                <button class="btn btn-outline-success" asp-action="Edit" asp-route-id="@item.Id">Edit</button> 
-                <button class="btn btn-outline-success" asp-action="Details" asp-route-id="@item.Id">Details</button> 
-                <button class="btn btn-danger" asp-action="Delete" asp-route-id="@item.Id">Delete</button> 
-                <button class="btn btn-outline-info" asp-action="BuchRetour" asp-route-id="@item.Id">zurückgeben</button>
+                <a class="btn btn-outline-success" asp-action="Edit" asp-route-id="@item.Id">Edit</a> 
+                <a class="btn btn-outline-success" asp-action="Details" asp-route-id="@item.Id">Details</a> 
+                <a class="btn btn-danger" asp-action="Delete" asp-route-id="@item.Id">Delete</a> 
+                <a class="btn btn-outline-info" asp-action="BuchRetour" asp-route-id="@item.Id">zurückgeben</a>
             </td>
         </tr>
 }
