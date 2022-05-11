@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:data="clr-namespace:BuechereiApp.Models"
+             x:Class="BuechereiApp.AusleiheView"
+             Title="Ausleihe"
+             BackgroundColor="White">
+    <ListView x:Name="AusleihenList">
+        <ListView.Header>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="0.5*" />
+                    <ColumnDefinition Width="1*" />
+                    <ColumnDefinition Width="1*" />
+                    <ColumnDefinition Width="1*" />
+                    <ColumnDefinition Width="1*" />
+                </Grid.ColumnDefinitions>
+                <Label Text="Buchnummer" FontAttributes="Bold" HorizontalOptions="Fill"  Grid.Column="1" HorizontalTextAlignment="Center" Margin="1"/>
+                <Label Text="Ausweisnummer" FontAttributes="Bold" HorizontalOptions="Fill" Grid.Column="2" HorizontalTextAlignment="Center" Margin="1"/>
+                <Label Text="Ausleihdatum" FontAttributes="Bold" HorizontalOptions="Fill" Grid.Column="3" HorizontalTextAlignment="Center" Margin="1"/>
+                <Label Text="Retourdatum" FontAttributes="Bold" HorizontalOptions="Fill" Grid.Column="4" HorizontalTextAlignment="Center" Margin="1"/>
+            </Grid>
+        </ListView.Header>
+
+        <ListView.ItemTemplate>
+            <DataTemplate x:DataType="data:Ausleihe">
+                <ViewCell>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="0.5*" />
+                            <ColumnDefinition Width="1*" />
+                            <ColumnDefinition Width="1*" />
+                            <ColumnDefinition Width="1*" />
+                            <ColumnDefinition Width="1*" />
+                        </Grid.ColumnDefinitions>
+                        <CheckBox Grid.Column="0"/>
+                        <Label Grid.Column="1" Text ="{Binding Buchnummer}" HorizontalOptions="Fill" HorizontalTextAlignment="Center" Margin="1"></Label>
+                        <Label Grid.Column="2" Text ="{Binding Ausweisnummer}" HorizontalOptions="Fill" HorizontalTextAlignment="Center" Margin="1"></Label>
+                        <Label Grid.Column="3" Text ="{Binding Ausleihdatum}" HorizontalOptions="Fill" HorizontalTextAlignment="Center" Margin="1"></Label>
+                        <Label Grid.Column="4" Text ="{Binding Retourdatum}" HorizontalOptions="Fill" HorizontalTextAlignment="Center" Margin="1"></Label>
+                    </Grid>
+                </ViewCell>
+            </DataTemplate>
+        </ListView.ItemTemplate>
+    </ListView>
+</ContentPage>
