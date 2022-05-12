@@ -56,17 +56,17 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <Compile Update="Views\test.xaml.cs">
-	    <DependentUpon>test.xaml</DependentUpon>
+	  <Compile Update="Views\Ausleihe\AusleiheView.xaml.cs">
+	    <DependentUpon>AusleiheView.xaml</DependentUpon>
 	  </Compile>
 	</ItemGroup>
 
 	<ItemGroup>
-	  <MauiXaml Update="Views\test.xaml">
+	  <MauiXaml Update="Views\Ausleihe\AusleiheView.xaml">
 	    <SubType>Designer</SubType>
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="Views\AusleiheView.xaml">
+	  <MauiXaml Update="Views\Ausleihe\EditView.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Views\BuecherView.xaml">

@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:data="clr-namespace:BuechereiApp.Models"
+             x:Class="BuechereiApp.AusleiheView"
+             Title="Ausleihen"
+             BackgroundColor="#f2f2f2">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0.1*"></RowDefinition>
+            <RowDefinition Height="1*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*"></ColumnDefinition>
+            <ColumnDefinition Width="1*"></ColumnDefinition>
+            <ColumnDefinition Width="1*"></ColumnDefinition>
+            <ColumnDefinition Width="1*"></ColumnDefinition>
+            <ColumnDefinition Width="1*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Button Clicked="AusleiheLoeschen" Grid.Column="0" Grid.Row="0" Text="Löschen" BackgroundColor="#cccccc" TextColor="#252422"/>
+        <Button Clicked="RedirectToEdit" Grid.Column="1" Grid.ColumnSpan="3" Grid.Row="0" Text="Bearbeiten/Details" BackgroundColor="#cccccc" TextColor="#252422"/>
+        <Button Clicked="RefreshAusleihe" Grid.Column="4" Grid.Row="0" Text="Refresh" BackgroundColor="#cccccc" TextColor="#252422"/>
+        <ListView x:Name="AusleihenList" Grid.ColumnSpan="5" Grid.Row="1" Grid.Column="0">
+            <ListView.ItemTemplate>
+                <DataTemplate x:DataType="data:Ausleihe">
+                    <ViewCell>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="1*"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="1*"></RowDefinition>
+                                <RowDefinition Height="1*"></RowDefinition>
+                            </Grid.RowDefinitions>
+                            <Label Padding="5" Grid.Row="0" Text="{Binding Buch.Titel}" FontSize="Medium" TextColor="#252422"/>
+                            <Label Padding="5" Grid.Row="1" Text="{Binding SchuelerIn.Nachname}" FontAttributes="Italic" FontSize="Micro" TextColor="#403d39"/>
+                        </Grid>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </Grid>
+</ContentPage>

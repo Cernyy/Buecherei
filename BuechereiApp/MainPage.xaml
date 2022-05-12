@@ -8,6 +8,5 @@
     <local:AusleiheView />
     <local:SchuelerInnenView />
     <local:BuecherView />
-    <local:test />
 
 </TabbedPage>

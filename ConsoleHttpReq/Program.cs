@@ -9,10 +9,11 @@ client.BaseAddress = new Uri("https://10.3.9.16:5001");
 try
 {
     var s = new SchuelerIn() { Ausweisnummer = 133, Nachname = "juliane", Vorname = "welt" };
-    var request = client.PostAsJsonAsync("api/SchuelerInAPI/133", s);
+    var request = client.PostAsJsonAsync("api/SchuelerInAPI/8", s);
 
     var responseBody = await request.Result.Content.ReadAsStringAsync();
     Console.WriteLine(responseBody);
+    Console.Read();
 }
 catch (Exception e)
 {

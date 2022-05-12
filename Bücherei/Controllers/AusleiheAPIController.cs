@@ -25,7 +25,7 @@ namespace Bücherei.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Ausleihe>>> GetAusleihe()
         {
-            return await _context.Ausleihe.ToListAsync();
+            return await _context.Ausleihe.Include(a => a.Buch).Include(a => a.SchuelerIn).ToListAsync();
         }
 
         // GET: api/AusleiheAPI/5
