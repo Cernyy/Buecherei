@@ -2,8 +2,8 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:data="clr-namespace:BuechereiApp.Models"
-             x:Class="BuechereiApp.AusleiheView"
-             Title="Ausleihe"
+             x:Class="BuechereiApp.BuchView"
+             Title="SchuelerIn"
              BackgroundColor="#f2f2f2">
     <Grid>
         <Grid.RowDefinitions>
@@ -17,13 +17,13 @@
             <ColumnDefinition Width="1*"></ColumnDefinition>
             <ColumnDefinition Width="1*"></ColumnDefinition>
         </Grid.ColumnDefinitions>
-        <Button Clicked="AusleiheLoeschen" Grid.Column="0" Grid.Row="0" Text="Löschen" BackgroundColor="#cccccc" TextColor="#252422"/>
+        <Button Clicked="SchuelerInLoeschen" Grid.Column="0" Grid.Row="0" Text="Löschen" BackgroundColor="#cccccc" TextColor="#252422"/>
         <Button Clicked="RedirectToEdit" Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="0" Text="Bearbeiten/Details" BackgroundColor="#cccccc" TextColor="#252422"/>
-        <Button Clicked="RefreshAusleihe" Grid.Column="3" Grid.Row="0" Text="Refresh" BackgroundColor="#cccccc" TextColor="#252422"/>
+        <Button Clicked="RefreshSchuelerIn" Grid.Column="3" Grid.Row="0" Text="Refresh" BackgroundColor="#cccccc" TextColor="#252422"/>
         <Button Clicked="RedirectToCreate" Grid.Column="4" Grid.Row="0" FontAttributes="Bold" Text="+" BackgroundColor="#cccccc" TextColor="#252422"/>
-        <ListView x:Name="AusleihenList" Grid.ColumnSpan="5" Grid.Row="1" Grid.Column="0">
+        <ListView x:Name="SchuelerInnenList" Grid.ColumnSpan="5" Grid.Row="1" Grid.Column="0">
             <ListView.ItemTemplate>
-                <DataTemplate x:DataType="data:Ausleihe">
+                <DataTemplate x:DataType="data:SchuelerIn">
                     <ViewCell>
                         <Grid>
                             <Grid.ColumnDefinitions>
@@ -33,8 +33,8 @@
                                 <RowDefinition Height="1*"></RowDefinition>
                                 <RowDefinition Height="1*"></RowDefinition>
                             </Grid.RowDefinitions>
-                            <Label Padding="5" Grid.Row="0" Text="{Binding Buch.Titel}" FontSize="Medium" TextColor="#252422"/>
-                            <Label Padding="5" Grid.Row="1" Text="{Binding SchuelerIn.Nachname}" FontAttributes="Italic" FontSize="Micro" TextColor="#403d39"/>
+                            <Label Padding="5" Grid.Row="0" Text="{Binding Vorname}" FontSize="Medium" TextColor="#252422"/>
+                            <Label Padding="5" Grid.Row="1" Text="{Binding Nachname}" FontAttributes="Italic" FontSize="Micro" TextColor="#403d39"/>
                         </Grid>
                     </ViewCell>
                 </DataTemplate>

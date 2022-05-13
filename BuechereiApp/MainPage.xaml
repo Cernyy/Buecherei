@@ -6,7 +6,7 @@
             BackgroundColor="{DynamicResource SecondaryColor}">
     
     <local:AusleiheView />
-    <local:SchuelerInnenView />
+    <local:SchuelerInView />
     <local:BuecherView />
 
 </TabbedPage>

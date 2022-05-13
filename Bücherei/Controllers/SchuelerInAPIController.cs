@@ -47,15 +47,18 @@ namespace Bücherei.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> PutSchuelerIn(int id, SchuelerIn schuelerIn)
         {
-            if (id != schuelerIn.Ausweisnummer)
+            if (id != schuelerIn.Ausweisnummer && HasNoFKConnections(id))
             {
-                return BadRequest();
+                //alten eintrag löschen und neuen erstellen
+                await DeleteSchuelerIn(id);
+                await PostSchuelerIn(schuelerIn);
+                return NoContent();
             }
-
             _context.Entry(schuelerIn).State = EntityState.Modified;
 
             try
             {
+                _context.SchuelerIn.Update(schuelerIn);
                 await _context.SaveChangesAsync();
             }
             catch (DbUpdateConcurrencyException)
@@ -103,6 +106,14 @@ namespace Bücherei.Controllers
         private bool SchuelerInExists(int id)
         {
             return _context.SchuelerIn.Any(e => e.Ausweisnummer == id);
+        }
+
+        private bool HasNoFKConnections(int id)
+        {
+            Ausleihe test = _context.Ausleihe.Where<Ausleihe>(a => a.Ausweisnummer == id).FirstOrDefault();
+            if (test != null)
+                return false;
+            return true;
         }
     }
 }

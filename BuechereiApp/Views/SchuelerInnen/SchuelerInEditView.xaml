@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="BuechereiApp.SchuelerInEditView"
+             BackgroundColor="White">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="0.1*"></ColumnDefinition>
+            <ColumnDefinition Width="1*"></ColumnDefinition>
+            <ColumnDefinition Width="1*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+        </Grid.RowDefinitions>
+
+        <Button Text="Edit" Clicked="EditVorname" Grid.RowSpan="2"  Grid.Row="0" BackgroundColor="#cccccc" TextColor="#252422"/>
+        <Label Text="Vorname" FontSize="Medium" Grid.ColumnSpan="2" Grid.Column="1" Grid.Row="0"/>
+        <Label Text="{Binding Vorname}" x:Name="LabelVorname" FontSize="Small" Grid.ColumnSpan="2" Grid.Column="1" Grid.Row="1" TextColor="Black"/>
+
+        <Button Text="Edit" Clicked="EditNachname" Grid.RowSpan="2"  Grid.Row="2" BackgroundColor="#cccccc" TextColor="#252422"/>
+        <Label Text="Nachname" FontSize="Medium" Grid.ColumnSpan="2" Grid.Column="1" Grid.Row="2"/>
+        <Label Text="{Binding Nachname}" FontSize="Small" x:Name="LabelNachname" Grid.ColumnSpan="2" Grid.Column="1" Grid.Row="3" TextColor="Black"/>
+
+        <Button Text="Edit" Clicked="EditAusweisnummer" Grid.RowSpan="2"  Grid.Row="4" BackgroundColor="#cccccc" TextColor="#252422"/>
+        <Label Text="Ausweisnummer" FontSize="Medium" Grid.ColumnSpan="2" Grid.Column="1" Grid.Row="4"/>
+        <Label Text="{Binding Ausweisnummer}" x:Name="LabelAusweisnummer" FontSize="Small" Grid.ColumnSpan="2" Grid.Column="1" Grid.Row="5" TextColor="Black"/>
+
+        <Button Text="Abbrechen" Clicked="Abbrechen" Grid.RowSpan="1" Grid.Column="1" Grid.Row="8" BackgroundColor="#cccccc" TextColor="#252422" Margin="3"/>
+        <Button Text="Speichern" Clicked="SaveChanges" Grid.RowSpan="1" Grid.Column="2" Grid.Row="8" BackgroundColor="#cccccc" TextColor="#252422" Margin="3"/>
+    </Grid>
+</ContentPage>

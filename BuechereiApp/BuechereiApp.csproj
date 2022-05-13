@@ -56,17 +56,56 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <Compile Update="Views\Ausleihe\AusleiheEditView.xaml.cs">
+	    <DependentUpon>AusleiheEditView.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="Views\Buch\BuchCreateView.xaml.cs">
+	    <DependentUpon>BuchCreateView.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="Views\Buch\BuchEditView.xaml.cs">
+	    <DependentUpon>BuchEditView.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="Views\Buch\SchuelerInView.xaml.cs">
+	    <DependentUpon>%(Filename)</DependentUpon>
+	  </Compile>
+	  <Compile Update="Views\SchuelerInnen\SchuelerInView.xaml.cs">
+	    <DependentUpon>SchuelerInView.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="Views\Ausleihe\AusleiheCreateView.xaml.cs">
+	    <DependentUpon>AusleiheCreateView.xaml</DependentUpon>
+	  </Compile>
 	  <Compile Update="Views\Ausleihe\AusleiheView.xaml.cs">
 	    <DependentUpon>AusleiheView.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="Views\SchuelerInnen\SchuelerInCreateView.xaml.cs">
+	    <DependentUpon>SchuelerInCreateView.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="Views\SchuelerInnen\SchuelerInEditView.xaml.cs">
+	    <DependentUpon>SchuelerInEditView.xaml</DependentUpon>
 	  </Compile>
 	</ItemGroup>
 
 	<ItemGroup>
-	  <MauiXaml Update="Views\Ausleihe\AusleiheView.xaml">
+	  <MauiXaml Update="Views\Buch\BuchCreateView.xaml">
 	    <SubType>Designer</SubType>
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="Views\Ausleihe\EditView.xaml">
+	  <MauiXaml Update="Views\Buch\BuchEditView.xaml">
+	    <SubType>Designer</SubType>
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\Buch\SchuelerInView.xaml">
+	    <SubType>Designer</SubType>
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\SchuelerInnen\SchuelerInView.xaml">
+	    <SubType>Designer</SubType>
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\Ausleihe\AusleiheCreateView.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\Ausleihe\AusleiheEditView.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Views\BuecherView.xaml">
@@ -75,6 +114,22 @@
 	  <MauiXaml Update="Views\SchuelerInnenView.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	  <MauiXaml Update="Views\Ausleihe\AusleiheView.xaml">
+	    <SubType>Designer</SubType>
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\SchuelerInnen\SchuelerInCreateView.xaml">
+	    <SubType>Designer</SubType>
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\SchuelerInnen\SchuelerInEditView.xaml">
+	    <SubType>Designer</SubType>
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Folder Include="Views\Buch - Kopieren\" />
 	</ItemGroup>
 
 	<PropertyGroup Condition="$(TargetFramework.Contains('-windows'))">

@@ -3,39 +3,39 @@ using System.Net.Http.Json;
 
 namespace BuechereiApp;
 
-public partial class AusleiheView : ContentPage
+public partial class BuchView : ContentPage
 {
     public HttpClientHandler handler = new HttpClientHandler();
     public HttpClient client;
     
-    public AusleiheView()
+    public BuchView()
 	{
 		InitializeComponent();
         handler.ServerCertificateCustomValidationCallback = (httpRequestMessage, cert, cetChain, policyErrors) => { return true; };
         client = new HttpClient(handler);
         client.BaseAddress = new Uri("https://10.3.9.16:5001");
         Task.Run(async () =>{
-            AusleihenList.ItemsSource = await GetAusleihenAsync();
+            SchuelerInnenList.ItemsSource = await GeSchuelerInnenAsync();
         }).Wait();
         
     }
 
-    public async Task<List<Ausleihe>> GetAusleihenAsync()
+    public async Task<List<SchuelerIn>> GeSchuelerInnenAsync()
     {
-        List<Ausleihe> ausleihen = await client.GetFromJsonAsync<List<Ausleihe>>("api/AusleiheAPI/");
+        List<SchuelerIn> ausleihen = await client.GetFromJsonAsync<List<SchuelerIn>>("api/SchuelerInAPI/");
         return ausleihen;
     }
 
-    //ButtonEvent um einen Ausleihe zu löschen
-    async void AusleiheLoeschen(object sender, EventArgs args)
+    //ButtonEvent um einen SchuelerIn zu löschen
+    async void BuchLoeschen(object sender, EventArgs args)
     {
-        if ((Ausleihe)AusleihenList.SelectedItem != null)
+        if ((SchuelerIn)BuchList.SelectedItem != null)
         {
             if (!await DisplayAlert("Bestätigung", "Möchten Sie dieses Element sicher löschen?", "Nein", "Ja"))
             {
-                await client.DeleteAsync("api/AusleiheAPI/" + ((Ausleihe)AusleihenList.SelectedItem).Id);
-                AusleihenList.ItemsSource = await GetAusleihenAsync();
-                RefreshAusleihe();
+                await client.DeleteAsync("api/SchuelerInAPI/" + ((Buch)BuchList.SelectedItem).Buchnummer);
+                BuchList.ItemsSource = await GeBuecherAsync();
+                RefreshSchuelerIn();
             }
         }
         else
@@ -44,22 +44,24 @@ public partial class AusleiheView : ContentPage
         }
     }
     //ButtonEvent um die Liste zu Refreshen
-    void RefreshAusleihe(object sender, EventArgs args)
+    void RefreshSchuelerIn(object sender, EventArgs args)
     {
-         RefreshAusleihe();
+        RefreshSchuelerIn();
     }
     //Überladene Methode damit man die Methode auch im Backend aufrufen kann
-    public async void RefreshAusleihe()
+    public async void RefreshSchuelerIn()
     {
-        AusleihenList.ItemsSource = await GetAusleihenAsync();        
+        SchuelerInnenList.ItemsSource = await GeSchuelerInnenAsync();        
       }
     //ButtonEvent um zur Bearbeiten bzw Detail Ansicht zu springen
     async void RedirectToEdit(object sender, EventArgs args)
     {
-        if (AusleihenList.SelectedItem != null)
+        if (SchuelerInnenList.SelectedItem != null)
         {
-            AusleiheEditView.ausleihe = client.GetFromJsonAsync<Ausleihe>("api/AusleiheAPI/" + ((Ausleihe)AusleihenList.SelectedItem).Id).Result;
-            App.Current.MainPage = new NavigationPage(new AusleiheEditView());
+            
+            SchuelerInEditView.schuelerin = client.GetFromJsonAsync<SchuelerIn>("api/SchuelerInAPI/" + ((SchuelerIn)SchuelerInnenList.SelectedItem).Ausweisnummer).Result;
+            SchuelerInEditView.oldAusweisnummer = SchuelerInEditView.schuelerin.Ausweisnummer;
+            App.Current.MainPage = new NavigationPage(new SchuelerInEditView());
         }
         else
         {
@@ -69,7 +71,7 @@ public partial class AusleiheView : ContentPage
     //ButtonEvent um zur Bearbeiten bzw Detail Ansicht zu springen
     void RedirectToCreate(object sender, EventArgs args)
     {
-        AusleiheCreateView.ausleihe = new Ausleihe();
-        App.Current.MainPage = new NavigationPage(new AusleiheCreateView());
+        SchuelerInCreateView.schuelerin = new SchuelerIn();
+        App.Current.MainPage = new NavigationPage(new SchuelerInCreateView());
     }
 }
